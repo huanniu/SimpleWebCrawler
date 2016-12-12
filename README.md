@@ -16,12 +16,10 @@ Given the time constraint, below are considerations of how the program is implem
 1. A domain model is required for a web page, similar to a tree structure
 2. Not all the methods are tested, but the main logic is covered
 3. For loose coupling / testing purpose, I divided the functionality into three major components:
-
     a. PageParser: parse the document and create a web page object
     b. DocumentFetcher: connect to a url, fetch its content, and return the document object, simply using Jsoup api
     c. WebCrawler: the assembling point to iteratively build the web page object
 4. The program hasn't tested against a real website, and just uses well formed urls for the two reasons:
-
     a. Time constraint
     b. The tests represent an abstract problem model. If the program works with the tests, it should work with the real problem but adjustments are required
 5. Sitemap could be in different format. To keep it simple, I just output the result into a file
