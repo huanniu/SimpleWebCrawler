@@ -50,4 +50,27 @@ public class Page {
     public Set<Page> getChildren() {
         return children;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Internal links: ").append(System.getProperty("line.separator"));
+        for (String internalLink: this.getInternalLinks()) {
+            sb.append(internalLink).append(System.getProperty("line.separator"));
+        }
+
+        sb.append("External links: ").append(System.getProperty("line.separator"));
+        for (String externalLink: this.getExternalLinks()) {
+            sb.append(externalLink).append(System.getProperty("line.separator"));
+        }
+
+        sb.append("Images: ").append(System.getProperty("line.separator"));
+        for (String img: this.getImages()) {
+            sb.append(img).append(System.getProperty("line.separator"));
+        }
+
+        sb.append("===========================").append(System.getProperty("line.separator"));
+
+        return sb.toString();
+    }
 }
