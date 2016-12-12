@@ -4,11 +4,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 public class PageParser {
-    private String domainURL;
     private Document document;
 
-    public PageParser(String domainURL, Document document) {
-        this.domainURL = domainURL;
+    public PageParser(Document document) {
         this.document = document;
     }
 
@@ -24,7 +22,7 @@ public class PageParser {
     private void parseLinks(Page page) {
         for (Element link: document.select("a")) {
             String href = link.absUrl("href");
-            if (href.startsWith(domainURL)) {
+            if (href.startsWith(document.baseUri())) {
                 page.addInternalLink(href);
             } else {
                 page.addExternalLink(href);

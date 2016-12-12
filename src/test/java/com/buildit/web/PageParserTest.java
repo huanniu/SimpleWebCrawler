@@ -11,18 +11,18 @@ public class PageParserTest {
 
     @Test
     public void testParseInternalLinks() {
-        Document document = Jsoup.parse("<html><a href='" + DOMAIN_URL + "'>test page</a></html>");
-        PageParser parser = new PageParser(DOMAIN_URL, document);
+        Document document = Jsoup.parse("<html><a href='test'>test page</a></html>", DOMAIN_URL);
+        PageParser parser = new PageParser(document);
         Page page = parser.parse();
 
         assertEquals(1, page.getInternalLinks().size());
-        assertEquals(DOMAIN_URL, page.getInternalLinks().iterator().next());
+        assertEquals(DOMAIN_URL + "/test", page.getInternalLinks().iterator().next());
     }
 
     @Test
     public void testParseExternalLinks() {
-        Document document = Jsoup.parse("<html><a href='http://www.google.com'>Google</a></html>");
-        PageParser parser = new PageParser(DOMAIN_URL, document);
+        Document document = Jsoup.parse("<html><a href='http://www.google.com'>Google</a></html>", DOMAIN_URL);
+        PageParser parser = new PageParser(document);
         Page page = parser.parse();
 
         assertEquals(1, page.getExternalLinks().size());
@@ -31,8 +31,8 @@ public class PageParserTest {
 
     @Test
     public void testParseImages() {
-        Document document = Jsoup.parse("<html><img src='smile.png' alt='Smile'></html>");
-        PageParser parser = new PageParser(DOMAIN_URL, document);
+        Document document = Jsoup.parse("<html><img src='smile.png' alt='Smile'></html>", DOMAIN_URL);
+        PageParser parser = new PageParser(document);
         Page page = parser.parse();
 
         assertEquals(1, page.getImages().size());
